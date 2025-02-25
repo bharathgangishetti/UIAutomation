@@ -39,8 +39,8 @@ public class StepDefination {
 
     @When("I enter valid username and password")
     public void i_enter_valid_username_and_password() {
-        WebElement username = driver.findElement(LoginPage.getUsernameField());
-        WebElement password = driver.findElement(LoginPage.getPasswordField());
+        WebElement username = driver.findElement(LoginPage.username());
+        WebElement password = driver.findElement(LoginPage.password());
         WebElement loginButton = driver.findElement(LoginPage.getLoginButton());
 
         username.sendKeys(JsonReader.getCredential("username"));

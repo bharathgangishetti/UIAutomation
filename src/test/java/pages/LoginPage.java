@@ -4,11 +4,11 @@ import org.openqa.selenium.By;
 
 public class LoginPage {
 
-    public static By getUsernameField() {
+    public static By username() {
         return By.xpath("//input[@name='username']");
     }
 
-    public static By getPasswordField() {
+    public static By password() {
         return By.xpath("//input[@name='password']");
     }
 
