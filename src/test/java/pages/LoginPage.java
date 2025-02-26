@@ -11,16 +11,10 @@ public class LoginPage {
     static {
         LOCATORS.put("username", By.xpath("//input[@name='username']"));
         LOCATORS.put("password", By.xpath("//input[@name='password']"));
-        // Add more locators as needed
-        // Example: LOCATORS.put("email", By.id("email"));
-        // Example: LOCATORS.put("firstName", By.name("firstName"));
+        LOCATORS.put("LoginButton", By.xpath("//input[@value='Log In']"));
     }
 
     public static By getLocator(String key) {
         return LOCATORS.get(key);
-    }
-
-    public static By getLoginButton() {
-        return By.xpath("//input[@value='Log In']");
     }
 }

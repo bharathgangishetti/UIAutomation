@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.Iterator; 
 import java.util.Map.Entry; 
 import org.openqa.selenium.By;
+import java.util.concurrent.TimeUnit;
 
 
 import java.time.Duration;
@@ -28,7 +29,6 @@ public class StepDefination {
     @Given("I launch the application")
     public void i_launch_the_application() {
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe");
-
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
@@ -43,16 +43,16 @@ public class StepDefination {
         driver.get(ConfigReader.getConfigValue("BASE_URL"));
     }
 
-    // @When("I enter valid username and password")
-    // public void i_enter_valid_username_and_password() {
-    //     WebElement username = driver.findElement(LoginPage.username());
-    //     WebElement password = driver.findElement(LoginPage.password());
-    //     WebElement loginButton = driver.findElement(LoginPage.getLoginButton());
+    @Given("User Maximises the window")
+    public void user_maximises_the_window() {
+        driver.manage().window().maximize();
+    }
 
-    //     username.sendKeys(JsonReader.getCredential("username"));
-    //     password.sendKeys(JsonReader.getCredential("password"));
-    //     loginButton.click();
-    // }
+    @When("user holds for {int} seconds")
+    public void user_hols_for_seconds(Integer int1) throws InterruptedException {
+       Thread.sleep(int1 * 1000);
+    }
+
 
     @When("I enter {string}")
     public void i_enter(String credentialsKey) {
@@ -60,45 +60,41 @@ public class StepDefination {
         System.out.println("Retrieved Credentials: " + credentialsMap);
 
         if (credentialsMap != null) {
-        for (Entry<String, String> entry : credentialsMap.entrySet()) {
-            String key = entry.getKey();
-            String value = entry.getValue();
+            for (Entry<String, String> entry : credentialsMap.entrySet()) {
+                String key = entry.getKey();
+                String value = entry.getValue();
 
-            By locator = LoginPage.getLocator(key); // Get the locator dynamically
+                By locator = LoginPage.getLocator(key);
 
-            if (locator != null) {
-                try {
-                    WebElement element = driver.findElement(locator);
-                    element.sendKeys(value);
-                } catch (org.openqa.selenium.NoSuchElementException e) {
-                    System.err.println("Element not found for key: " + key + ". Check your locator in LoginPage.");
+                if (locator != null) {
+                    try {
+                        WebElement element = driver.findElement(locator);
+                        element.sendKeys(value);
+                    } catch (org.openqa.selenium.NoSuchElementException e) {
+                        System.err.println("Element not found for key: " + key + ". Check your locator in LoginPage.");
+                    }
+                } else {
+                    System.err.println("Locator not defined for key: " + key + ". Add it to LoginPage."); 
                 }
-            } else {
-                System.err.println("Locator not defined for key: " + key + ". Add it to LoginPage.");
             }
-        }
-        WebElement loginButton = driver.findElement(LoginPage.getLoginButton());
-        loginButton.click(); 
         }
     }
 
-    // @Then("I click on {string}")
-    // public void i_click_on(String string) {
-    //     By buttonLocator = LoginPage.getLocator(buttonName);
+    @When("I click on {string}") 
+    public void i_click_on(String buttonName) { 
+        By buttonLocator = LoginPage.getLocator(buttonName);
 
-    //     if (buttonLocator != null) {
-    //         try {
-    //             WebElement button = driver.findElement(buttonLocator);
-    //             button.click();
-    //         } catch (org.openqa.selenium.NoSuchElementException e) {
-    //             System.err.println("Button not found: " + buttonName + ". Check your locator in LoginPage.");
-    //         }
-    //     } else {
-    //     System.err.println("Locator not defined for button: " + buttonName + ". Add it to LoginPage.");
-    //     }
-    // }
-    
-
+        if (buttonLocator != null) {
+            try {
+                WebElement button = driver.findElement(buttonLocator);
+                button.click();
+            } catch (org.openqa.selenium.NoSuchElementException e) {
+                System.err.println("Button not found: " + buttonName + ". Check your locator in LoginPage.");
+            }
+        } else {
+            System.err.println("Locator not defined for button: " + buttonName + ". Add it to LoginPage.");
+        }
+    }
 
     @Then("I should be logged in successfully")
     public void i_should_be_logged_in_successfully() {
