@@ -1,6 +1,22 @@
 {
     "credentials": {
-        "username": "testuser",
-        "password": "testpassword"
+        "username": "bhagan",
+        "password": "bhagan"
+    },
+    "LoginSuccessMessage": "Account Services",
+    "SignUpDetails": {
+        "firstName": "bhagan",
+        "lastName": "bhagan",
+        "address": "bhagan",
+        "city": "bhagan",
+        "state": "bhagan",
+        "zipCode": 1234,
+        "phoneNumber": 716,
+        "ssn": 123456,
+        "selectUsername": "bhagan",
+        "selectPassword": "bhagan",
+        "confirmPassword": "bhagan"
     }
+
+    
 }

@@ -31,4 +31,23 @@ public class JsonReader {
         }
         return credentialsMap;
     }
+
+    public static String getValueByKey(String key) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(new File(JSON_PATH));
+            JsonNode valueNode = jsonNode.get(key);
+
+            if (valueNode != null) {
+                return valueNode.asText();
+            } else {
+                System.err.println("Key '" + key + "' not found in JSON");
+                return null;
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

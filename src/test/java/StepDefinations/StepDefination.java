@@ -26,7 +26,7 @@ import java.time.Duration;
 public class StepDefination {
     WebDriver driver;
 
-    @Given("I launch the application")
+    @Given("User launch the application")
     public void i_launch_the_application() {
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe");
 
@@ -54,7 +54,7 @@ public class StepDefination {
     }
 
 
-    @When("I enter {string}")
+    @When("User enter {string}")
     public void i_enter(String credentialsKey) {
         Map<String, String> credentialsMap = JsonReader.getCredentials(credentialsKey);
         System.out.println("Retrieved Credentials: " + credentialsMap);
@@ -80,7 +80,7 @@ public class StepDefination {
         }
     }
 
-    @When("I click on {string}") 
+    @When("User click on {string}") 
     public void i_click_on(String buttonName) { 
         By buttonLocator = LoginPage.getLocator(buttonName);
 
@@ -96,10 +96,21 @@ public class StepDefination {
         }
     }
 
-    @Then("I should be logged in successfully")
-    public void i_should_be_logged_in_successfully() {
-        System.out.println("Login successful.");
+
+    @Then("User closes the browser")
+    public void i_closes_the_browser() {
         driver.quit();
+    }
+
+    @Then("User shoud verify {string} message is displyed")
+    public void i_shoud_verify_message_is_displyed(String string) {
+        By expectedTextLocator = LoginPage.getLocator(string);
+        String expectedText = driver.findElement(expectedTextLocator).getText();
+        String actualText = JsonReader.getValueByKey(string);
+        System.out.println("Expected Text: " + expectedText);
+        System.out.println("Actual Text: " + actualText);
+        System.out.println("expectedTextLocator: " + expectedTextLocator);
+        assert expectedText.equals(actualText);
     }
 }
 
