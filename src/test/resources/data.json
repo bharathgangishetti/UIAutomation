@@ -13,10 +13,11 @@
         "zipCode": 1234,
         "phoneNumber": 716,
         "ssn": 123456,
-        "selectUsername": "bhagan",
+        "selectUsername": "bhagang",
         "selectPassword": "bhagan",
         "confirmPassword": "bhagan"
-    }
+    },
+    "accountCreatedMsg": "Your account was created successfully. You are now logged in."
 
     
 }

@@ -26,9 +26,12 @@ import java.time.Duration;
 public class StepDefination {
     WebDriver driver;
 
-    @Given("User launch the application")
-    public void i_launch_the_application() {
-        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe");
+    @When("User launch {string} application")
+    public void user_launch_application(String string) {
+        String url = string;
+        String chromeDriverPath = ConfigReader.getConfigValue("CHROME_DRIVER_PATH");
+        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
@@ -40,8 +43,25 @@ public class StepDefination {
 
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get(ConfigReader.getConfigValue("BASE_URL"));
+        driver.get(ConfigReader.getConfigValue(url));
     }
+
+    // @Given("User launch the application")
+    // public void i_launch_the_application() {
+    //     System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe");
+
+    //     ChromeOptions options = new ChromeOptions();
+    //     options.addArguments("--remote-allow-origins=*");
+    //     options.addArguments("--disable-dev-shm-usage");
+    //     options.addArguments("--disable-gpu");
+    //     options.addArguments("--disable-popup-blocking");
+    //     options.addArguments("--disable-features=NetworkService");
+    //     options.addArguments("--no-sandbox");
+
+    //     driver = new ChromeDriver();
+    //     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    //     driver.get(ConfigReader.getConfigValue("BASE_URL"));
+    // }
 
     @Given("User Maximises the window")
     public void user_maximises_the_window() {
