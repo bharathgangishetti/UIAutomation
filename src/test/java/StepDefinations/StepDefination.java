@@ -1,6 +1,10 @@
 package StepDefination;
 
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -19,12 +23,16 @@ import java.util.Iterator;
 import java.util.Map.Entry; 
 import org.openqa.selenium.By;
 import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+
 
 
 import java.time.Duration;
 
 public class StepDefination {
     WebDriver driver;
+    WebDriverWait wait;
 
     @When("User launch {string} application")
     public void user_launch_application(String string) {
@@ -44,6 +52,8 @@ public class StepDefination {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(ConfigReader.getConfigValue(url));
+
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     // @Given("User launch the application")
@@ -120,6 +130,39 @@ public class StepDefination {
     @Then("User closes the browser")
     public void i_closes_the_browser() {
         driver.quit();
+    }
+
+
+    // unimplementedmethod 
+    @Then("iShouldSeeTheSignInModalPopup")
+    public void i_should_see_the_sign_in_modal_popup() {
+        WebElement modal = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//div[@role='dialog' and @data-automation-id='popUpDialog']")
+        ));
+        assert modal.isDisplayed();
+
+        WebElement emailField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@data-automation-id='email']")));
+        emailField.sendKeys("test@example.com");
+
+        // Enter Password
+        WebElement passwordField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@data-automation-id='password']")));
+        passwordField.sendKeys("yourpassword");
+
+        WebElement button = driver.findElement(By.cssSelector("[data-automation-id='signInSubmitButton']"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(button).click().perform();
+
+        // WebElement button = modal.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
+        // button.click();
+
+        // Click on the "Sign In" button
+        // WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@aria-label='Sign In']")));
+        // submitButton.sendKeys(Keys.ENTER);
+        
+        // JavascriptExecutor js = (JavascriptExecutor) driver;
+        // js.executeScript("arguments[0].click();", submitButton);
+
+    
     }
 
     @Then("User shoud verify {string} message is displyed")

@@ -28,6 +28,32 @@ public class LoginPage {
         LOCATORS.put("confirmPassword", By.xpath("//*[@id='repeatedPassword']"));
         LOCATORS.put("confirmRegister", By.xpath("//*[@type='submit' and @value='Register']"));
         LOCATORS.put("accountCreatedMsg", By.xpath("//*[contains(text(),'Your account was created successfully. You are now logged in.')]"));
+
+
+        LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
+        LOCATORS.put("walmartLoginEmail", By.xpath("//input[@autocomplete='email']"));
+        LOCATORS.put("walmartLoginPassword", By.xpath("//input[@data-automation-id='password']"));
+        LOCATORS.put("walmartSignInButton", By.xpath("//button[contains(text(),'Sign In')]"));
+        LOCATORS.put("walmartPopUpDisplyed", By.xpath("//div[@data-automation-id='popUpDialog']"));
+        // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
+        // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
+        // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
+        // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
+        // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
+        // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
+        // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
+        // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
+        // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
+        // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
+        // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
+        // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
+        // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
+        // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
+        // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
+        // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
+        // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
+        // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
+        // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
     }
 
     public static By getLocator(String key) {

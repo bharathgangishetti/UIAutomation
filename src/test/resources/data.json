@@ -17,7 +17,11 @@
         "selectPassword": "bhagan",
         "confirmPassword": "bhagan"
     },
-    "accountCreatedMsg": "Your account was created successfully. You are now logged in."
+    "accountCreatedMsg": "Your account was created successfully. You are now logged in.",
+    "WalmartSigninCreds": {
+        "walmartLoginEmail": "bharathgangishetti@gmail.com",
+        "walmartLoginPassword": "Bharath*123"
+    }
 
     
 }
