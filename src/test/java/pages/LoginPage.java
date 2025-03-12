@@ -35,14 +35,22 @@ public class LoginPage {
         LOCATORS.put("walmartLoginPassword", By.xpath("//input[@data-automation-id='password']"));
         LOCATORS.put("walmartSignInButton", By.xpath("//button[contains(text(),'Sign In')]"));
         LOCATORS.put("walmartPopUpDisplyed", By.xpath("//div[@data-automation-id='popUpDialog']"));
-        // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
-        // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
-        // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
-        // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
-        // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
-        // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
-        // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
-        // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
+        LOCATORS.put("walmartJobId", By.xpath("//*[@data-automation-id='keywordSearchInput']"));
+        LOCATORS.put("walmartSearchJobId", By.xpath("//button[@data-automation-id='keywordSearchButton']"));
+        LOCATORS.put("walmartClickOnJob", By.xpath("//a[@data-automation-id='jobTitle']"));
+        LOCATORS.put("walmartApplyButton", By.xpath("//a[@data-automation-id='adventureButton']"));
+        LOCATORS.put("walmartUseLastApplication", By.xpath("//a[@data-automation-id='useMyLastApplication']"));
+        LOCATORS.put("walmartReferralPromptSearch", By.xpath("(//*[@data-uxi-widget-type='selectinput'])[1]"));
+        LOCATORS.put("walmartReferral", By.xpath("//div[@data-automation-id='promptOption' and @data-automation-label='Walmart Career Site']"));
+        LOCATORS.put("walmartReferralLink", By.xpath("//*[@data-automation-label='Walmart Career Site']"));
+        LOCATORS.put("walmartSaveAndContinue", By.xpath("//button[contains(text(),'Save and Continue')]"));
+        
+
+        LOCATORS.put("AmexFindJobs", By.xpath("//*[@title='Find Open Jobs']"));
+        LOCATORS.put("AmexJobId", By.xpath("//*[@id='main-search-box']"));
+        LOCATORS.put("AmexGoButton", By.xpath("//button[@class='go-button']"));
+        LOCATORS.put("AmexApplyJob", By.xpath("//button[@data-test-id='apply-button']"));
+        LOCATORS.put("AmexIAgree", By.xpath("//input[contains(@value, 'I Agree')]"));
         // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
         // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));
         // LOCATORS.put("walmartSignInLink", By.xpath("//span[contains(text(),'Sign In')]"));

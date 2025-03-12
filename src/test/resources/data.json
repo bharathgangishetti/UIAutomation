@@ -18,10 +18,17 @@
         "confirmPassword": "bhagan"
     },
     "accountCreatedMsg": "Your account was created successfully. You are now logged in.",
-    "WalmartSigninCreds": {
+    "walmartSigninCreds": {
         "walmartLoginEmail": "bharathgangishetti@gmail.com",
         "walmartLoginPassword": "Bharath*123"
+    },
+    "walmartJobId": {
+        "walmartJobId": "R-2011755"
+    },
+    "walmartMyInfo": {
+        "walmartReferral": "Walmart Career Site"
     }
+    
 
     
 }

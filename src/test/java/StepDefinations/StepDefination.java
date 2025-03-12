@@ -25,7 +25,9 @@ import org.openqa.selenium.By;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
-
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.interactions.Actions;
+import java.util.List;
 
 
 import java.time.Duration;
@@ -56,22 +58,6 @@ public class StepDefination {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    // @Given("User launch the application")
-    // public void i_launch_the_application() {
-    //     System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe");
-
-    //     ChromeOptions options = new ChromeOptions();
-    //     options.addArguments("--remote-allow-origins=*");
-    //     options.addArguments("--disable-dev-shm-usage");
-    //     options.addArguments("--disable-gpu");
-    //     options.addArguments("--disable-popup-blocking");
-    //     options.addArguments("--disable-features=NetworkService");
-    //     options.addArguments("--no-sandbox");
-
-    //     driver = new ChromeDriver();
-    //     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-    //     driver.get(ConfigReader.getConfigValue("BASE_URL"));
-    // }
 
     @Given("User Maximises the window")
     public void user_maximises_the_window() {
@@ -117,7 +103,9 @@ public class StepDefination {
         if (buttonLocator != null) {
             try {
                 WebElement button = driver.findElement(buttonLocator);
-                button.click();
+                // button.click();
+                Actions actions = new Actions(driver);
+                actions.moveToElement(button).click().perform();
             } catch (org.openqa.selenium.NoSuchElementException e) {
                 System.err.println("Button not found: " + buttonName + ". Check your locator in LoginPage.");
             }
@@ -133,38 +121,6 @@ public class StepDefination {
     }
 
 
-    // unimplementedmethod 
-    @Then("iShouldSeeTheSignInModalPopup")
-    public void i_should_see_the_sign_in_modal_popup() {
-        WebElement modal = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//div[@role='dialog' and @data-automation-id='popUpDialog']")
-        ));
-        assert modal.isDisplayed();
-
-        WebElement emailField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@data-automation-id='email']")));
-        emailField.sendKeys("test@example.com");
-
-        // Enter Password
-        WebElement passwordField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@data-automation-id='password']")));
-        passwordField.sendKeys("yourpassword");
-
-        WebElement button = driver.findElement(By.cssSelector("[data-automation-id='signInSubmitButton']"));
-        Actions actions = new Actions(driver);
-        actions.moveToElement(button).click().perform();
-
-        // WebElement button = modal.findElement(By.xpath("//button[contains(text(),'Sign In')]"));
-        // button.click();
-
-        // Click on the "Sign In" button
-        // WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@aria-label='Sign In']")));
-        // submitButton.sendKeys(Keys.ENTER);
-        
-        // JavascriptExecutor js = (JavascriptExecutor) driver;
-        // js.executeScript("arguments[0].click();", submitButton);
-
-    
-    }
-
     @Then("User shoud verify {string} message is displyed")
     public void i_shoud_verify_message_is_displyed(String string) {
         By expectedTextLocator = LoginPage.getLocator(string);
@@ -174,6 +130,64 @@ public class StepDefination {
         System.out.println("Actual Text: " + actualText);
         System.out.println("expectedTextLocator: " + expectedTextLocator);
         assert expectedText.equals(actualText);
+    }
+
+    @Then("User closes the modal")
+    public void user_closes_the_modal() {
+
+        try {
+            WebElement modal = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='dialog']")));
+            System.out.println("Modal is displayed!");
+
+            // Click on "Skip" Button
+            WebElement skipButton = driver.findElement(By.xpath("//button[text()='Skip']"));
+            skipButton.click();
+            System.out.println("Skipped modal successfully!");
+
+        } catch (TimeoutException e) {
+            System.out.println("Modal did not appear.");
+        }
+    
+    }
+
+    @When("the user scrolls to the element with id {string}")
+    public void the_user_scrolls_to_the_element_with_id(String string) {
+
+        By elementToBeScrolled = LoginPage.getLocator(string);
+        System.out.println("Element to be scrolled: " + elementToBeScrolled);
+        
+        // Use JavaScriptExecutor to scroll to the element
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);", elementToBeScrolled);
+        
+    }
+
+    @Then("User click on Iagreepage")
+    public void user_click_on_iagreepage() {
+
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+            // Print all input buttons
+            List<WebElement> buttons = driver.findElements(By.tagName("input"));
+            for (WebElement button : buttons) {
+                System.out.println("Button Found: " + button.getAttribute("value") + " | ID: " + button.getAttribute("id"));
+            }
+
+    // Wait for "I Agree" button to appear
+            WebElement agreeButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[contains(@value, 'I Agree')]")));
+
+    // Print if button is found
+            System.out.println("Is Displayed? " + agreeButton.isDisplayed());
+            System.out.println("Is Enabled? " + agreeButton.isEnabled());
+
+    // Scroll and Click
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", agreeButton);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", agreeButton);
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 }
 
