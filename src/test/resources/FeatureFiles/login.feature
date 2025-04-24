@@ -61,6 +61,17 @@ Feature: Login Functionality
     Then User click on "walmartSaveAndContinue"
     When user holds for 5 seconds
     Then User click on "walmartSaveAndContinue"
+    When I select "No" from the "meet all minimum qualifications" dropdown
+    # When I select "Opt-Out from receiving text messages from Walmart" from the "Message and data rates may apply" dropdown
+    # When I select "No" from the "Are you legally able to work in the country" dropdown
+    When I select "18 years of age and Over" from the "Please select your age category:" dropdown
+    When I select "Have never been an employee of Walmart Inc or any of its subsidiaries" from the "Please select your Walmart Associate Status" dropdown
+    When I select "Yes" from the "Are you able to provide work authorization" dropdown
+    When I select "No" from the "The following questions are to assist Walmart" dropdown
+    When I select "No" from the "Are you the Spouse/Partner of someone" dropdown
+    When I select "No" from the "Do you have a direct family member who currently" dropdown
+    When I select "No" from the "Will you now or in the future require "sponsorship" dropdown
+    Then User click on "walmartSaveAndContinue"
     # Then User closes the browser
     
 

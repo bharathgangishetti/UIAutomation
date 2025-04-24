@@ -44,6 +44,8 @@ public class LoginPage {
         LOCATORS.put("walmartReferral", By.xpath("//div[@data-automation-id='promptOption' and @data-automation-label='Walmart Career Site']"));
         LOCATORS.put("walmartReferralLink", By.xpath("//*[@data-automation-label='Walmart Career Site']"));
         LOCATORS.put("walmartSaveAndContinue", By.xpath("//button[contains(text(),'Save and Continue')]"));
+        LOCATORS.put("walmartTandC", By.xpath("//input[@id='termsAndConditions--acceptTermsAndAgreements']"));
+        LOCATORS.put("walmartSubmitApplication", By.xpath("//button[@data-automation-id='pageFooterNextButton']"));
         
 
         LOCATORS.put("AmexFindJobs", By.xpath("//*[@title='Find Open Jobs']"));

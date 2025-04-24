@@ -4,6 +4,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.sql.DriverManager;
 import java.time.Duration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -189,5 +191,29 @@ public class StepDefination {
             System.out.println("Error: " + e.getMessage());
         }
     }
+    
+    @When("I select {string} from the {string} dropdown")
+    public void i_select_value_from_dropdown(String optionToSelect, String dropdownLabel) {
+    // WebDriver driver = DriverManager.getDriver();
+
+    // Create dynamic XPath using the dropdown label
+    String dropdownXPath = String.format(
+        "//*[contains(text(), '" + dropdownLabel + "')]/ancestor::legend/following-sibling::div//button[contains(text(), 'Select One')]",
+        dropdownLabel
+    );
+
+    // Click to open the dropdown
+    WebElement dropdownButton = driver.findElement(By.xpath(dropdownXPath));
+    dropdownButton.click();
+
+
+    By optionLocator = By.xpath(
+        "//div[@visibility='opened']//ul[@role='listbox']//div[normalize-space(text())='" + optionToSelect + "']"
+    );
+    WebElement option = wait.until(ExpectedConditions.presenceOfElementLocated(optionLocator));
+    wait.until(ExpectedConditions.elementToBeClickable(option)).click();
+    }
+
+
 }
 
